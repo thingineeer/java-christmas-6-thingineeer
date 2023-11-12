@@ -11,15 +11,15 @@ public class DateValidator implements Validator{
 
     private void checkInteger(String input) {
         try {
-            int date = Integer.parseInt(input);
+            Integer.parseInt(input);
         } catch (IllegalArgumentException e) {
-            throw new IllegalArgumentException(ErrorMessage.NOT_NUMERIC);
+            throw new IllegalArgumentException(ErrorMessage.NOT_NUMERIC.getMessage());
         }
     }
     private void checkOutOfRange(String input) {
         int date = Integer.parseInt(input);
         if (date < 1 || date > 31) {
-            throw new IllegalArgumentException(ErrorMessage.DATE_OUT_OF_RANGE);
+            throw new IllegalArgumentException(ErrorMessage.DATE_OUT_OF_RANGE.getMessage());
         }
     }
 }
