@@ -1,5 +1,6 @@
 package christmas.constant;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -29,6 +30,10 @@ public enum Menu {
             .map(i -> i.getName())
             .toList();
 
+    public static final List<String> ALL_MENU_NAME = Arrays.stream(Menu.values())
+            .map(menuEnum -> menuEnum.getName())
+            .toList();
+
     private final String name;
     private final int price;
     private final MenuType type;
@@ -49,6 +54,14 @@ public enum Menu {
 
     public MenuType getType() {
         return type;
+    }
+
+    public static Menu getMenuName(String koreanName) {
+        return Arrays.stream(Menu.values())
+                .filter(menu -> menu.getName().equals(koreanName))
+                .findFirst()
+                .orElse(null);
+                // 하나도 없으면 null, 하지만 예외 잘해서 없을 확률 0에 수렴
     }
 }
 

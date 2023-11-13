@@ -13,5 +13,13 @@ public class Order {
         return this.menuName + " " + this.menuQuantity + "개";
     }
 
+    public String retrieveMenuName() {
+        return menuName;
+    }
+
+    public int retrieveMenuQuantity() {
+        return menuQuantity;
+    }
+
 
 }
