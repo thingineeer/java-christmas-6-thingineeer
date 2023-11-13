@@ -1,7 +1,7 @@
 package christmas.validator;
 
 
-import christmas.ErrorMessage;
+import christmas.constant.ErrorMessage;
 import org.assertj.core.api.AssertionsForClassTypes;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
@@ -16,7 +16,7 @@ class OrderValidatorTest {
     @DisplayName("chechDefaultTemplate 검증 테스트")
     class CheckTemplate {
         @ParameterizedTest(name = "{0}가 입력되었을 때")
-        @ValueSource(strings = {"1a", " ", "해산물파스타--2,레드와인-1", "..."})
+        @ValueSource(strings = {"1a", " ", "해산물파스타--2,레드와인-1", "...", "타파스-1,제로콜라-1 ,"})
         void 정해진_템플릿_입력이_아닌경우(String input) {
             AssertionsForClassTypes.assertThatThrownBy(() -> orderValidator.check(input))
                     .isInstanceOf(IllegalArgumentException.class)
