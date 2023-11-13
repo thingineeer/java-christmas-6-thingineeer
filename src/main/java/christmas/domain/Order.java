@@ -10,7 +10,7 @@ public class Order {
         this.menuQuantity = menuQuantity;
     }
 
-    public String printEachOrder() {
+    public String getEachOrder() {
         return this.menuName + " " + this.menuQuantity + "개";
     }
 
