@@ -46,4 +46,16 @@ public class OutputView {
         printMessage(GIFT_MENU);
     }
 
+    public static void printBenefit() {
+        printSeparator();
+        printMessage(BENEFIT_DETAILS);
+    }
+
+
+
+
+    public static void printNothing() {
+        printMessage(NOTHING);
+    }
+
 }

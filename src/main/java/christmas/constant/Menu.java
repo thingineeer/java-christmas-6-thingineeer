@@ -61,7 +61,7 @@ public enum Menu {
                 .filter(menu -> menu.getName().equals(koreanName))
                 .findFirst()
                 .orElse(null);
-                // 하나도 없으면 null, 하지만 예외 잘해서 없을 확률 0에 수렴
+                // 하나도 없으면 null
     }
 }
 

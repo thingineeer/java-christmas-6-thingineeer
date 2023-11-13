@@ -18,23 +18,11 @@ public class OrderPrice {
 
     // 할인 전 총 주문 금액 출력 기능
     public void printBeforeDiscountInfo() {
-        this.totalAmount = calculateTotalAmount();
+        this.totalAmount = orders.calculateTotalAmount();
 
         OutputView.printBeforeDiscount();
         String result = Utils.makeFormattedNumberWithComma(this.totalAmount);
         OutputView.printMessage(result + "원");
-    }
-
-    public int calculateTotalAmount() {
-        int totalAmount = orders.getOrderList().stream()
-                .filter(eachOrder -> ALL_MENU_NAME.contains(eachOrder.retrieveMenuName()))
-                .mapToInt(order -> {
-                    Menu menu = Menu.getMenuName(order.retrieveMenuName());
-                    return menu.getPrice() * order.retrieveMenuQuantity();
-                })
-                .sum();
-
-        return totalAmount;
     }
 
     public int getTotalAmount() {
