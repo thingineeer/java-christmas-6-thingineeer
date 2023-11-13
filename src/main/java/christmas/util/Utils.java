@@ -1,5 +1,6 @@
 package christmas.util;
 
+import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -17,5 +18,10 @@ public final class Utils {
                         HashMap::new
                 ));
         return resultMap;
+    }
+
+    public static String makeFormattedNumberWithComma(int number) {
+        DecimalFormat decimalFormat = new DecimalFormat("#,###");
+        return decimalFormat.format(number);
     }
 }
