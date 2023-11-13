@@ -5,7 +5,7 @@ public class OutputView {
     public static final String WELCOME = "안녕하세요! 우테코 식당 12월 이벤트 플래너입니다.";
     public static final String ORDER = "<주문 메뉴>";
     public static final String BEFORE_DISCOUNT = "<할인 전 총주문 금액>";
-    public static final String EVENT_MENU = "<증정 메뉴>";
+    public static final String GIFT_MENU = "<증정 메뉴>";
     public static final String BENEFIT_DETAILS = "<혜택 내역>";
     public static final String TOTAL_BENEFIT_DETAILS = "<총혜택 금액>";
     public static final String AFTER_DISCOUNT_EXPECT = "<할인 후 예상 결제 금액>";
@@ -39,6 +39,11 @@ public class OutputView {
     public static void printBeforeDiscount() {
         printSeparator();
         printMessage(BEFORE_DISCOUNT);
+    }
+
+    public static void printGiftMenu() {
+        printSeparator();
+        printMessage(GIFT_MENU);
     }
 
 }

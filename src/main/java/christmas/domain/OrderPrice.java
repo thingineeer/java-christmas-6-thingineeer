@@ -37,4 +37,7 @@ public class OrderPrice {
         return totalAmount;
     }
 
+    public int getTotalAmount() {
+        return totalAmount;
+    }
 }
