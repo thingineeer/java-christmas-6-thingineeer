@@ -1,13 +1,10 @@
 package christmas.validator;
 
-import christmas.ErrorMessage;
-import christmas.Menu;
-import christmas.MenuType;
-import christmas.OutputView;
-import christmas.Utils;
+import christmas.constant.ErrorMessage;
+import christmas.constant.Menu;
+import christmas.util.Utils;
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;

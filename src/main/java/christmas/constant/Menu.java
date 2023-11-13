@@ -1,7 +1,6 @@
-package christmas;
+package christmas.constant;
 
 import java.util.List;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public enum Menu {

@@ -1,6 +1,6 @@
 package christmas.validator;
 
-import christmas.ErrorMessage;
+import christmas.constant.ErrorMessage;
 
 public class DateValidator implements Validator{
     @Override

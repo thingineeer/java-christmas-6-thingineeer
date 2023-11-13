@@ -1,4 +1,4 @@
-package christmas;
+package christmas.util;
 
 import java.util.HashMap;
 import java.util.Map;

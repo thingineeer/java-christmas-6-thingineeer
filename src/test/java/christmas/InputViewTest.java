@@ -3,6 +3,7 @@ package christmas;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import camp.nextstep.edu.missionutils.Console;
+import christmas.view.InputView;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.util.HashMap;
