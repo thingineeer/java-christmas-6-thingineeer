@@ -1,7 +1,6 @@
 package christmas.domain;
 
 public class Order {
-
     private String menuName;
     private int menuQuantity;
 

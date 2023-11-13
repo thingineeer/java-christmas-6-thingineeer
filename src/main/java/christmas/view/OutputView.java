@@ -1,7 +1,7 @@
 package christmas.view;
 
 public class OutputView {
-    public static final String NOTICE_BENEFIT = "12월 %d일에 우테코 식당에서 받을 이벤트 혜택 미리보기!";
+    public static final String NOTICE_BENEFIT = "12월 %d일에 우테코 식당에서 받을 이벤트 혜택 미리보기!\n";
     public static final String WELCOME = "안녕하세요! 우테코 식당 12월 이벤트 플래너입니다.";
     public static final String ORDER = "<주문 메뉴>";
     public static final String EVENT_MENU = "<증정 메뉴>";
@@ -19,16 +19,19 @@ public class OutputView {
         System.out.println(message);
     }
 
-    public static void printBENEFIT(int date) {
+    public static void printSeparator() {
+        System.out.println();
+    }
+
+    public static void printBenefit(int date) {
         System.out.printf(NOTICE_BENEFIT, date);
     }
     public static void printWelcome() {
         printMessage(WELCOME);
     }
 
-    public static void printMenu() {
+    public static void printOrderMenu() {
         printMessage(ORDER);
     }
-
 
 }
