@@ -1,18 +1,20 @@
 package christmas.domain;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
+import camp.nextstep.edu.missionutils.Console;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-class OrderManagerTest {
+class OrderPriceTest {
     OrderRepository orderRepository = new OrderRepository();
     Order T_Born;
     Order BBQ;
-    OrderManager orderManager;
+    OrderPrice orderPrice;
 
     @BeforeEach
     void setUp() {
@@ -20,19 +22,24 @@ class OrderManagerTest {
         BBQ = new Order("바비큐립", 4);
         orderRepository.addOrder(T_Born);
         orderRepository.addOrder(BBQ);
-        orderManager = new OrderManager(orderRepository); // 생성자로 초기화
+        orderPrice = new OrderPrice(orderRepository);
     }
 
     @Test
-    @DisplayName("printAllDetail() 출력 테스트")
-    void 주문메뉴_잘_출력되는지() {
-        String expectedOutput = "\n<주문 메뉴>\n티본스테이크 1개\n바비큐립 4개\n";
+    @DisplayName("printBeforeDiscountInfo() 출력 테스트")
+    void 주문메뉴의_총_금액이_잘_출력되는지() {
+        String expectedOutput = "\n<할인 전 총주문 금액>\n271,000원\n";
 
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
-        orderManager.printAllDetail();
+        orderPrice.printBeforeDiscountInfo();
 
         String actualOutput = outContent.toString();
         assertEquals(expectedOutput, actualOutput);
+    }
+
+    @AfterEach
+    void closeConsole() {
+        Console.close();
     }
 }
