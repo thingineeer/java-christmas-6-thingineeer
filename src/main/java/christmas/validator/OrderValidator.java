@@ -24,7 +24,6 @@ public class OrderValidator implements Validator {
         checkBeverageOnly(input);
     }
 
-
     private void chechDefaultTemplate(String input) {
 
         List<String> orderItems = Arrays.asList(input.split(","));
