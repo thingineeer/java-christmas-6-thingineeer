@@ -86,6 +86,21 @@ public class BenefitInformation {
         return totalDiscount;
     }
 
+    public void printPaymentAmountAfterDiscount(int totalAmount) {
+        OutputView.printSeparator();
+        OutputView.printMessage(OutputView.AFTER_DISCOUNT_EXPECT);
+
+        int result = calculateAfterDiscount(totalAmount);
+        OutputView.printMessage(Utils.makeFormattedNumberWithComma(result) + "원");
+    }
+    public int calculateAfterDiscount(int totalAmount) {
+        if (totalAmount > 120000) {
+            totalAmount += 25000;
+        }
+        int totalDiscount = calculateTotalDiscount(totalAmount);
+        return totalAmount + totalDiscount;
+    }
+
     private int calculateChristmasDiscount(Date date) {
         int christmasDiscount = 1000;
         int dayOfMonth = date.getDate();
