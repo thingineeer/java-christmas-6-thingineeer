@@ -54,13 +54,30 @@ public class BenefitInformation {
         }
     }
 
+    public void printTotalDiscount(int Amount) {
+        OutputView.printSeparator();
+        OutputView.printMessage(OutputView.TOTAL_BENEFIT_DETAILS);
 
-    public int calculateTotalDiscount(Date date, int totalAmount) {
+        int totalAmount = Amount;
+
+        if (totalAmount < 10000) {
+            OutputView.printMessage("0원");
+            return;
+        }
+
+        int result = calculateTotalDiscount(totalAmount);
+        OutputView.printMessage(Utils.makeFormattedNumberWithComma(result) + "원");
+    }
+
+
+    public int calculateTotalDiscount(int totalAmount) {
         int totalDiscount = 0;
 
-        totalDiscount += calculateChristmasDiscount(date);
-        totalDiscount += calculateWeekdayWeekendDiscount(date);
-        totalDiscount += calculateSpecialDiscount(date);
+        if (totalAmount > 10000) {
+            totalDiscount += calculateChristmasDiscount(date);
+            totalDiscount += calculateWeekdayWeekendDiscount(date);
+            totalDiscount += calculateSpecialDiscount(date);
+        }
 
         if (totalAmount > 120000) {
             totalDiscount -= 25000;
@@ -128,6 +145,4 @@ public class BenefitInformation {
 
         return specialDiscount;
     }
-
-
 }
