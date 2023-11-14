@@ -13,7 +13,7 @@ public class DateValidator implements Validator{
         try {
             Integer.parseInt(input);
         } catch (IllegalArgumentException e) {
-            throw new IllegalArgumentException(ErrorMessage.NOT_NUMERIC.getMessage());
+            throw new IllegalArgumentException(ErrorMessage.DATE_OUT_OF_RANGE.getMessage());
         }
     }
     private void checkOutOfRange(String input) {

@@ -19,7 +19,7 @@ class DateValidatorTest {
         void 숫자_아닌_입력시_예외(String input) {
             AssertionsForClassTypes.assertThatThrownBy(() -> dateValidator.check(input))
                     .isInstanceOf(IllegalArgumentException.class)
-                    .hasMessageContaining(ErrorMessage.NOT_NUMERIC.getMessage());
+                    .hasMessageContaining(ErrorMessage.DATE_OUT_OF_RANGE.getMessage());
         }
     }
 
