@@ -70,6 +70,7 @@ public class BenefitInformation {
     }
 
 
+
     public int calculateTotalDiscount(int totalAmount) {
         int totalDiscount = 0;
 
@@ -93,7 +94,7 @@ public class BenefitInformation {
         int result = calculateAfterDiscount(totalAmount);
         OutputView.printMessage(Utils.makeFormattedNumberWithComma(result) + "원");
     }
-    public int calculateAfterDiscount(int totalAmount) {
+    public int calculateAfterDiscount(int totalAmount) { // 총 혜택 금액
         if (totalAmount > 120000) {
             totalAmount += 25000;
         }
