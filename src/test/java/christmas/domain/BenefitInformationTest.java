@@ -34,7 +34,12 @@ class BenefitInformationTest {
                 + "크리스마스 디데이 할인: -1,200원\n"
                 + "평일 할인: -4,046원\n"
                 + "특별 할인: -1,000원\n"
-                + "증정 이벤트: -25,000원\n");
+                + "증정 이벤트: -25,000원\n"
+                + "\n<총혜택 금액>\n"
+                + "-31,246원\n"
+                + "\n<할인 후 예상 결제 금액>\n"
+                + "135,754원\n"
+        );
     }
 
     @Test
@@ -46,7 +51,12 @@ class BenefitInformationTest {
         benefitInformation = new BenefitInformation(date, orderRepository);
 
         assertDiscountInfo("\n<혜택 내역>\n"
-                + "크리스마스 디데이 할인: -2,400원\n");
+                + "크리스마스 디데이 할인: -2,400원\n"
+                + "\n<총혜택 금액>\n"
+                + "-2,400원\n"
+                + "\n<할인 후 예상 결제 금액>\n"
+                + "30,600원\n"
+        );
     }
 
     @Test
@@ -58,7 +68,12 @@ class BenefitInformationTest {
         benefitInformation = new BenefitInformation(date, orderRepository);
 
         assertDiscountInfo("\n<혜택 내역>\n"
-                + "없음\n");
+                + "없음\n"
+                + "\n<총혜택 금액>\n"
+                + "0원\n"
+                + "\n<할인 후 예상 결제 금액>\n"
+                + "8,500원\n"
+        );
     }
 
     @Test
@@ -90,6 +105,9 @@ class BenefitInformationTest {
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
         benefitInformation.printDiscountInfo();
+        int totalAmount = orderRepository.calculateTotalAmount();
+        benefitInformation.printTotalDiscount(totalAmount);
+        benefitInformation.printPaymentAmountAfterDiscount(totalAmount);
 
         String actualOutput = outContent.toString();
         assertEquals(expectedOutput, actualOutput);
