@@ -24,7 +24,7 @@ class BenefitInformationTest {
 
     @Test
     @DisplayName("printDiscountInfo() 3일 혜택 내역 적용")
-    void 날짜_3_일요일_적용() {
+    void 날짜_3_일요일_평일할인_적용() {
         prepareOrdersForTest1();
 
         date = new Date(3);
@@ -44,18 +44,23 @@ class BenefitInformationTest {
 
     @Test
     @DisplayName("printDiscountInfo() 15일 혜택 내역 적용")
-    void 날짜_15_금요일_적용() {
+    void 날짜_15_금요일_주말할인_적용() {
         prepareOrdersForTest2();
 
         date = new Date(15);
         benefitInformation = new BenefitInformation(date, orderRepository);
 
-        assertDiscountInfo("\n<혜택 내역>\n"
+        assertDiscountInfo(
+                "\n<혜택 내역>\n"
                 + "크리스마스 디데이 할인: -2,400원\n"
-                + "\n<총혜택 금액>\n"
-                + "-2,400원\n"
-                + "\n<할인 후 예상 결제 금액>\n"
-                + "30,600원\n"
+                + "주말 할인: -4,046원\n"
+                + "증정 이벤트: -25,000원\n"
+                + "\n"
+                + "<총혜택 금액>\n"
+                + "-31,446원\n"
+                + "\n"
+                + "<할인 후 예상 결제 금액>\n"
+                + "136,554원\n"
         );
     }
 
@@ -92,6 +97,7 @@ class BenefitInformationTest {
     }
 
     private void prepareOrdersForTest2() {
+        orderRepository.addOrder(new Order("티본스테이크", 2));
         orderRepository.addOrder(new Order("초코케이크", 2));
         orderRepository.addOrder(new Order("제로콜라", 1));
     }
