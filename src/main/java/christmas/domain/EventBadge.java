@@ -4,9 +4,18 @@ import christmas.view.OutputView;
 
 public class EventBadge {
     // 이벤트 뱃지를 관리 하는 클래스 입니다.
+    private static final int SANTA_MINIMUM_LIMIT = 20000;
+    private static final int TREE_MINIMUM_LIMIT = 20000;
+    private static final int STAR_MINIMUM_LIMIT = 20000;
+    private static final String SANTA = "산타";
+    private static final String TREE = "트리";
+    private static final String STAR = "별";
+
+    private static final String NOTHING = "없음";
+
     private int discountAmount;
 
-    public EventBadge(int discountAmount) {
+    public EventBadge(final int discountAmount) {
         this.discountAmount = discountAmount;
     }
 
@@ -17,17 +26,17 @@ public class EventBadge {
         OutputView.printMessage(badge);
     }
 
-    private String determineBadge(int discountAmount) {
-        if (-discountAmount >= 20000) {
-            return "산타";
+    private String determineBadge(final int discountAmount) {
+        if (-discountAmount >= SANTA_MINIMUM_LIMIT) {
+            return SANTA;
         }
-        if (-discountAmount >= 10000) {
-            return "트리";
+        if (-discountAmount >= TREE_MINIMUM_LIMIT) {
+            return TREE;
         }
-        if (-discountAmount >= 5000) {
-            return "별";
+        if (-discountAmount >= STAR_MINIMUM_LIMIT) {
+            return STAR;
         }
-        return "없음";
+        return NOTHING;
     }
 
 }
