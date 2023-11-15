@@ -1,5 +1,9 @@
 package christmas.view;
 
+import christmas.domain.Order;
+import christmas.domain.OrderManager;
+import christmas.domain.OrderRepository;
+
 public class OutputView {
     public static final String NOTICE_BENEFIT = "12월 %d일에 우테코 식당에서 받을 이벤트 혜택 미리보기!\n";
     public static final String WELCOME = "안녕하세요! 우테코 식당 12월 이벤트 플래너입니다.";
@@ -24,11 +28,13 @@ public class OutputView {
         System.out.println();
     }
 
-    public static void printBenefit(int date) {
+    public static void printBenefit(final int date) {
         System.out.printf(NOTICE_BENEFIT, date);
     }
+
     public static void printWelcome() {
         printMessage(WELCOME);
+
     }
 
     public static void printOrderMenu() {
@@ -51,11 +57,7 @@ public class OutputView {
         printMessage(BENEFIT_DETAILS);
     }
 
-
-
-
     public static void printNothing() {
         printMessage(NOTHING);
     }
-
 }

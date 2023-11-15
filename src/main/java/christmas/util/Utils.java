@@ -7,8 +7,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public final class Utils {
-
-    public static Map<String, Integer> makeStringToHashMap(String input) {
+    public static Map<String, Integer> makeStringToHashMap(final String input) {
         Map<String, Integer> resultMap = Stream.of(input.split(","))
                 .map(s -> s.split("-"))
                 .collect(Collectors.toMap(
@@ -20,7 +19,7 @@ public final class Utils {
         return resultMap;
     }
 
-    public static String makeFormattedNumberWithComma(int number) {
+    public static String makeFormattedNumberWithComma(final int number) {
         DecimalFormat decimalFormat = new DecimalFormat("#,###");
         return decimalFormat.format(number);
     }

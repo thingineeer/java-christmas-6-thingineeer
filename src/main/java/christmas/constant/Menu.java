@@ -38,7 +38,7 @@ public enum Menu {
     private final int price;
     private final MenuType type;
 
-    Menu(String name, int price, MenuType type) {
+    Menu(final String name, final int price, final MenuType type) {
         this.name = name;
         this.price = price;
         this.type = type;
@@ -56,7 +56,7 @@ public enum Menu {
         return type;
     }
 
-    public static Menu getMenuName(String koreanName) {
+    public static Menu getMenuName(final String koreanName) {
         return Arrays.stream(Menu.values())
                 .filter(menu -> menu.getName().equals(koreanName))
                 .findFirst()

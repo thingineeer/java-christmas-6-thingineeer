@@ -10,11 +10,11 @@ import java.util.Map;
 public class OrderRepository {
     List<Order> orderRepository = new ArrayList<>();
 
-    public void addOrder(Order order) {
+    public void addOrder(final Order order) {
         orderRepository.add(order);
     }
 
-    public int size(Order order) {
+    public int size(final Order order) {
         return orderRepository.size();
     }
 

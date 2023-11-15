@@ -12,7 +12,7 @@ public class OrderPrice {
     private OrderRepository orders;
     private int totalAmount;
 
-    public OrderPrice(OrderRepository orders) {
+    public OrderPrice(final OrderRepository orders) {
         this.orders = orders;
     }
 

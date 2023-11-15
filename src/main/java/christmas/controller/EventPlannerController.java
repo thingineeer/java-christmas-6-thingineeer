@@ -28,7 +28,7 @@ public class EventPlannerController {
         printResult();
 
     }
-    
+
     private void initialize() {
         OutputView.printWelcome();
         int dateInput = readDateUntilSuccess();
@@ -49,7 +49,7 @@ public class EventPlannerController {
         printEventBadge(benefitInformation);
     }
 
-    private void printEventBadge(BenefitInformation benefitInformation) {
+    private void printEventBadge(final BenefitInformation benefitInformation) {
         int result = benefitInformation.calculateTotalDiscount(Amount);
         EventBadge eventBadge = new EventBadge(result);
         eventBadge.printEventBadge();
