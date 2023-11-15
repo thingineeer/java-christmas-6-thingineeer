@@ -28,6 +28,7 @@
 - [x] 혜택 내역 출력 기능 `#BenefitInformation`
   - 혜택 내역 계산 로직
     - 총주문 금액 10,000원 이상부터 이벤트가 적용됩니다. ⭐
+      - [x] 주말 할인 , 평일 할인 확인 출력 확인  ⭐️
 - [x] 총 혜택 금액 출력 기능 `#BenefitInformation`
   - 총 혜택금액 계산 기능
 - [x] 할인 후 예상 결제금액 출력 기능 `#BenefitInformation`

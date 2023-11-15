@@ -88,14 +88,25 @@ public class BenefitInformation {
         List<String> discounts = new ArrayList<>();
 
         addDiscountInfo(discounts, "크리스마스 디데이 할인", calculateChristmasDiscount(date));
-        addDiscountInfo(discounts, "평일 할인", calculateWeekdayWeekendDiscount(date));
+        if (isWeekend(date)) {
+            addDiscountInfo(discounts, "주말 할인", calculateWeekdayWeekendDiscount(date));
+        }
+        if (!isWeekend(date)) {
+            addDiscountInfo(discounts, "평일 할인", calculateWeekdayWeekendDiscount(date));
+        }
         addDiscountInfo(discounts, "특별 할인", calculateSpecialDiscount(date));
 
         if (totalAmount > Constants.CHAMPAGNE_LIMIT.getConstants()) {
             addDiscountInfo(discounts, "증정 이벤트", -CHAMPAGNE_PRICE);
         }
-
         return discounts;
+    }
+
+    private boolean isWeekend(Date date) {
+        LocalDate localDate = LocalDate.of(Constants.THIS_YEAR.getConstants(), Constants.EVENT_MONTH.getConstants(),
+                date.getDate());
+        DayOfWeek dayOfWeek = localDate.getDayOfWeek();
+        return dayOfWeek == DayOfWeek.FRIDAY || dayOfWeek == DayOfWeek.SATURDAY;
     }
 
     private void printDiscountMessages(final List<String> discounts) {
@@ -112,7 +123,8 @@ public class BenefitInformation {
         int christmasDiscount = 0;
         int dayOfMonth = date.getDate();
 
-        if (dayOfMonth >= Constants.EVENT_START_DATE.getConstants() && dayOfMonth <= Constants.EVENT_END_DATE.getConstants()) {
+        if (dayOfMonth >= Constants.EVENT_START_DATE.getConstants()
+                && dayOfMonth <= Constants.EVENT_END_DATE.getConstants()) {
             int discountPerDay = 1000 + (dayOfMonth - 1) * 100; // 일일 할인액 계산
             christmasDiscount += discountPerDay;
         }
