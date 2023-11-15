@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BenefitInformation {
-    // 혜택내역과 혜택 금액을 관리하는 클래스 입니다.
+    // 모든 혜택과 관련된 정보를 관리하는 클래스 입니다.
     private static final String UNIT = "원";
     private static final int CHAMPAGNE_PRICE = 25000;
     private Date date;
@@ -40,8 +40,7 @@ public class BenefitInformation {
     }
 
     public void printTotalDiscount(final int Amount) {
-        OutputView.printSeparator();
-        OutputView.printMessage(OutputView.TOTAL_BENEFIT_DETAILS);
+        OutputView.printTotalBenefit();
 
         int totalAmount = Amount;
 
@@ -54,6 +53,12 @@ public class BenefitInformation {
         OutputView.printMessage(Utils.makeFormattedNumberWithComma(result) + UNIT);
     }
 
+    public void printPaymentAmountAfterDiscount(final int totalAmount) {
+        OutputView.printAfterDiscount();
+
+        int result = calculateAfterDiscount(totalAmount);
+        OutputView.printMessage(Utils.makeFormattedNumberWithComma(result) + UNIT);
+    }
 
     public int calculateTotalDiscount(final int totalAmount) {
         int totalDiscount = 0;
@@ -71,15 +76,7 @@ public class BenefitInformation {
         return totalDiscount;
     }
 
-    public void printPaymentAmountAfterDiscount(final int totalAmount) {
-        OutputView.printSeparator();
-        OutputView.printMessage(OutputView.AFTER_DISCOUNT_EXPECT);
-
-        int result = calculateAfterDiscount(totalAmount);
-        OutputView.printMessage(Utils.makeFormattedNumberWithComma(result) + UNIT);
-    }
-
-    private int calculateAfterDiscount(int totalAmount) { // 총 혜택 금액
+    private int calculateAfterDiscount(int totalAmount) {
         if (totalAmount > Constants.CHAMPAGNE_LIMIT.getConstants()) {
             totalAmount += CHAMPAGNE_PRICE;
         }
@@ -111,13 +108,13 @@ public class BenefitInformation {
         }
     }
 
-    private int calculateChristmasDiscount(final Date date) {
+    private int calculateChristmasDiscount(Date date) {
         int christmasDiscount = 0;
         int dayOfMonth = date.getDate();
 
-        if (dayOfMonth >= Constants.EVENT_START_DATE.getConstants() && Constants.EVENT_END_DATE.constants <= 25) {
+        if (dayOfMonth >= Constants.EVENT_START_DATE.getConstants() && dayOfMonth <= Constants.EVENT_END_DATE.getConstants()) {
             int discountPerDay = 1000 + (dayOfMonth - 1) * 100; // 일일 할인액 계산
-            christmasDiscount += discountPerDay; // 할인 적용
+            christmasDiscount += discountPerDay;
         }
 
         return -christmasDiscount;
@@ -160,7 +157,6 @@ public class BenefitInformation {
 
         int day = date.getDate();
 
-        // 특별 날짜에 해당하는 경우 할인 적용
         if (day == 3 || day == 10 || day == 17 || day == 24 || day == 25 || day == 31) {
             specialDiscount = -1000;
         }

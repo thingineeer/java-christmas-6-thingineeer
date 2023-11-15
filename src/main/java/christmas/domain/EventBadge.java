@@ -20,8 +20,7 @@ public class EventBadge {
     }
 
     public void printEventBadge() {
-        OutputView.printSeparator();
-        OutputView.printMessage(OutputView.EVENT_BADGE_MESSAGE);
+        OutputView.printEventBadge();
         String badge = determineBadge(discountAmount);
         OutputView.printMessage(badge);
     }

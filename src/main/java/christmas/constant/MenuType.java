@@ -5,6 +5,5 @@ public enum MenuType {
     MAIN,
     DESSERT,
     BEVERAGE
-
 }
 
