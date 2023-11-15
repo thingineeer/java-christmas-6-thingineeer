@@ -13,7 +13,7 @@ public class OrderManager {
     public void printAllDetail() {
         OutputView.printOrderMenu();
         orders.getOrderList().stream()
-                .map(Order::getEachOrder)
+                .map(Order::toString)
                 .forEach(OutputView::printMessage);
     }
 }

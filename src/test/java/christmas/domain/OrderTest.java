@@ -1,17 +1,10 @@
 package christmas.domain;
 
-import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
-import christmas.Application;
-import christmas.view.InputView;
-import java.io.ByteArrayInputStream;
-import java.io.InputStream;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.provider.CsvSource;
 
 class OrderTest {
 
@@ -31,8 +24,8 @@ class OrderTest {
         String expect = "타파스 1개";
         String expect2 = "제로콜라 17개";
 
-        String result = orderTapas.getEachOrder();
-        String result2 = orderZeroCoke.getEachOrder();
+        String result = orderTapas.toString();
+        String result2 = orderZeroCoke.toString();
 
         assertThat(result).isEqualTo(expect);
         assertThat(result2).isEqualTo(expect2);
