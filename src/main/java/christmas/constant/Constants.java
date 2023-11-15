@@ -3,11 +3,13 @@ package christmas.constant;
 import java.time.LocalDate;
 
 public enum Constants {
-    START_DATE(1),
-    END_DATE(31),
+    EVENT_START_DATE(1),
+    EVENT_END_DATE(25),
     MENU_LIMIT(20),
     CHAMPAGNE_LIMIT(120000),
-    THIS_YEAR(LocalDate.now().getYear());
+    MINIMUM_DISCOUNT_ABLE_AMOUNT(10000),
+    THIS_YEAR(LocalDate.now().getYear()),
+    EVENT_MONTH(12);
 
     public int constants;
 
