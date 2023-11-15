@@ -1,5 +1,6 @@
 package christmas.validator;
 
+import christmas.constant.Constants;
 import christmas.constant.ErrorMessage;
 import christmas.constant.Menu;
 import christmas.util.Utils;
@@ -24,7 +25,7 @@ public class OrderValidator implements Validator {
         checkBeverageOnly(input);
     }
 
-    private void chechDefaultTemplate(String input) {
+    private void chechDefaultTemplate(final String input) {
 
         List<String> orderItems = Arrays.asList(input.split(","));
 
@@ -42,7 +43,7 @@ public class OrderValidator implements Validator {
 
     }
 
-    private void checkValidatedForm(String input) {
+    private void checkValidatedForm(final String input) {
         // 유효하지않은 입력 (기본 템플릿 입력이 아닌 경우) [요청 사항 존재]
         try {
             Map<String, Integer> resultMap = Stream.of(input.split(","))
@@ -58,7 +59,7 @@ public class OrderValidator implements Validator {
         }
     }
 
-    private void checkIfStringMenu(String input) {
+    private void checkIfStringMenu(final String input) {
         Map<String, Integer> menu = Utils.makeStringToHashMap(input);
         // 메뉴(key) 부분이 String, 즉 문자열(한글,영어)이 아니면 예외처리 [요청 템플릿]
         menu.keySet().stream()
@@ -69,7 +70,7 @@ public class OrderValidator implements Validator {
                 });
     }
 
-    private void checkQuantityRange(String input) {
+    private void checkQuantityRange(final String input) {
         // 수량이 각각 1이상 20이하 가 아니면 예외처리 [요청 사항 존재]
         try {
             Map<String, Integer> menu = Utils.makeStringToHashMap(input);
@@ -84,7 +85,7 @@ public class OrderValidator implements Validator {
         }
     }
 
-    private void checkIfMenuExists(String input) {
+    private void checkIfMenuExists(final String input) {
         // 없는 메뉴일지 예외처리 ( ex) T본스테이크 ) [요청 사항 존재]
         Map<String, Integer> menu = Utils.makeStringToHashMap(input);
 
@@ -100,7 +101,7 @@ public class OrderValidator implements Validator {
                 });
     }
 
-    private void checkForDuplicateMenu(String input) {
+    private void checkForDuplicateMenu(final String input) {
         Map<String, Integer> resultMap = Stream.of(input.split(","))
                 .map(s -> s.split("-"))
                 .collect(Collectors.toMap(
@@ -113,17 +114,17 @@ public class OrderValidator implements Validator {
                 ));
     }
 
-    private void checkTotalMenuCount(String input) {
+    private void checkTotalMenuCount(final String input) {
         // 메뉴 개수의 합이 20개가 초과할시 예외처리
         Map<String, Integer> menu = Utils.makeStringToHashMap(input);
         int total = menu.values().stream().mapToInt(Integer::intValue).sum();
 
-        if (total > 20) {
+        if (total > Constants.MENU_LIMIT.getConstants()) {
             throw new IllegalArgumentException(ErrorMessage.TOTAL_MENU_COUNT_IS_OVER.getMessage());
         }
     }
 
-    private void checkBeverageOnly(String input) {
+    private void checkBeverageOnly(final String input) {
         // 각 메뉴에 음료 클래스만 있으면 예외처리
 
         Map<String, Integer> menu = Utils.makeStringToHashMap(input);
