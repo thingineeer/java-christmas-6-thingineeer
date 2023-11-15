@@ -2,12 +2,10 @@ package christmas.domain;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import camp.nextstep.edu.missionutils.Console;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -52,15 +50,15 @@ class BenefitInformationTest {
 
         assertDiscountInfo(
                 "\n<혜택 내역>\n"
-                + "크리스마스 디데이 할인: -2,400원\n"
-                + "주말 할인: -4,046원\n"
-                + "증정 이벤트: -25,000원\n"
-                + "\n"
-                + "<총혜택 금액>\n"
-                + "-31,446원\n"
-                + "\n"
-                + "<할인 후 예상 결제 금액>\n"
-                + "136,554원\n"
+                        + "크리스마스 디데이 할인: -2,400원\n"
+                        + "주말 할인: -4,046원\n"
+                        + "증정 이벤트: -25,000원\n"
+                        + "\n"
+                        + "<총혜택 금액>\n"
+                        + "-31,446원\n"
+                        + "\n"
+                        + "<할인 후 예상 결제 금액>\n"
+                        + "136,554원\n"
         );
     }
 
