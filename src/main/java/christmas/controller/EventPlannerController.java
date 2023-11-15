@@ -18,36 +18,17 @@ public class EventPlannerController {
     private Date date;
     private int Amount;
 
-    public EventPlannerController(InputView inputView, OrderRepository orderRepository) {
+    public EventPlannerController(final InputView inputView, final OrderRepository orderRepository) {
         this.inputView = inputView;
         this.orderRepository = orderRepository;
     }
 
     public void run() {
         initialize();
-
-        OrderManager orderInfo = new OrderManager(orderRepository);
-        orderInfo.printAllDetail();
-
-        OrderPrice orderPriceInfo = new OrderPrice(orderRepository);
-        orderPriceInfo.printBeforeDiscountInfo();
-        Amount = orderPriceInfo.getTotalAmount();
-
-        GiftMenu giftMenu = new GiftMenu(Amount);
-        giftMenu.printGiftInfo();
-
-        BenefitInformation benefitInformation = new BenefitInformation(date, orderRepository);
-        benefitInformation.printDiscountInfo();
-
-        benefitInformation.printTotalDiscount(Amount);
-        benefitInformation.printPaymentAmountAfterDiscount(Amount);
-
-        int result = benefitInformation.calculateTotalDiscount(Amount);
-        EventBadge eventBadge = new EventBadge(result);
-        eventBadge.printEventBadge();
+        printResult();
 
     }
-
+    
     private void initialize() {
         OutputView.printWelcome();
         int dateInput = readDateUntilSuccess();
@@ -60,12 +41,51 @@ public class EventPlannerController {
         OutputView.printBenefit(date.getDate());
     }
 
+    private void printResult() {
+        printOrderMenu();
+        printTotalOrderAmountBeforeDiscount();
+        printGiftMenu();
+        BenefitInformation benefitInformation = printBenefitDetail();
+        printEventBadge(benefitInformation);
+    }
+
+    private void printEventBadge(BenefitInformation benefitInformation) {
+        int result = benefitInformation.calculateTotalDiscount(Amount);
+        EventBadge eventBadge = new EventBadge(result);
+        eventBadge.printEventBadge();
+    }
+
+    private BenefitInformation printBenefitDetail() {
+        BenefitInformation benefitInformation = new BenefitInformation(date, orderRepository);
+        benefitInformation.printDiscountInfo();
+
+        benefitInformation.printTotalDiscount(Amount);
+        benefitInformation.printPaymentAmountAfterDiscount(Amount);
+        return benefitInformation;
+    }
+
+    private void printGiftMenu() {
+        GiftMenu giftMenu = new GiftMenu(Amount);
+        giftMenu.printGiftInfo();
+    }
+
+    private void printTotalOrderAmountBeforeDiscount() {
+        OrderPrice orderPriceInfo = new OrderPrice(orderRepository);
+        orderPriceInfo.printBeforeDiscountInfo();
+        Amount = orderPriceInfo.getTotalAmount();
+    }
+
+    private void printOrderMenu() {
+        OrderManager orderInfo = new OrderManager(orderRepository);
+        orderInfo.printAllDetail();
+    }
+
     private int readDateUntilSuccess() {
         while (true) {
             try {
                 int dateInput = inputView.readDate();
                 return dateInput;
-            }catch (IllegalArgumentException exception) {
+            } catch (IllegalArgumentException exception) {
                 OutputView.printMessage(exception.getMessage());
             }
         }
@@ -76,7 +96,7 @@ public class EventPlannerController {
             try {
                 Map<String, Integer> menuAndQuantityForOrder = inputView.readMenuAndQuantityForOrder();
                 return menuAndQuantityForOrder;
-            }catch (IllegalArgumentException exception) {
+            } catch (IllegalArgumentException exception) {
                 OutputView.printMessage(exception.getMessage());
             }
         }
