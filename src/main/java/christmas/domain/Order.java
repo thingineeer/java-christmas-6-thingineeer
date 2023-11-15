@@ -26,6 +26,4 @@ public class Order {
     public int retrieveMenuQuantity() {
         return menuQuantity;
     }
-
-
 }

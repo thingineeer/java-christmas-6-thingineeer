@@ -24,30 +24,19 @@ public class BenefitInformation {
 
     public void printDiscountInfo() {
         OutputView.printBenefit();
-
         int totalAmount = orderRepository.calculateTotalAmount();
 
         if (totalAmount < Constants.MINIMUM_DISCOUNT_ABLE_AMOUNT.getConstants()) {
             OutputView.printNothing();
             return;
         }
-
-        List<String> discounts = new ArrayList<>();
-
-        addDiscountInfo(discounts, "크리스마스 디데이 할인", calculateChristmasDiscount(date));
-        addDiscountInfo(discounts, "평일 할인", calculateWeekdayWeekendDiscount(date));
-        addDiscountInfo(discounts, "특별 할인", calculateSpecialDiscount(date));
-
-        if (totalAmount > Constants.CHAMPAGNE_LIMIT.getConstants()) {
-            addDiscountInfo(discounts, "증정 이벤트", -CHAMPAGNE_PRICE);
-        }
+        List<String> discounts = calculateDiscounts(date, totalAmount);
 
         if (discounts.isEmpty()) {
             OutputView.printNothing();
             return;
         }
-
-        discounts.forEach(OutputView::printMessage);
+        printDiscountMessages(discounts);
     }
 
     public void printTotalDiscount(final int Amount) {
@@ -90,7 +79,7 @@ public class BenefitInformation {
         OutputView.printMessage(Utils.makeFormattedNumberWithComma(result) + UNIT);
     }
 
-    public int calculateAfterDiscount(int totalAmount) { // 총 혜택 금액
+    private int calculateAfterDiscount(int totalAmount) { // 총 혜택 금액
         if (totalAmount > Constants.CHAMPAGNE_LIMIT.getConstants()) {
             totalAmount += CHAMPAGNE_PRICE;
         }
@@ -98,11 +87,30 @@ public class BenefitInformation {
         return totalAmount + totalDiscount;
     }
 
+    private List<String> calculateDiscounts(final Date date, final int totalAmount) {
+        List<String> discounts = new ArrayList<>();
+
+        addDiscountInfo(discounts, "크리스마스 디데이 할인", calculateChristmasDiscount(date));
+        addDiscountInfo(discounts, "평일 할인", calculateWeekdayWeekendDiscount(date));
+        addDiscountInfo(discounts, "특별 할인", calculateSpecialDiscount(date));
+
+        if (totalAmount > Constants.CHAMPAGNE_LIMIT.getConstants()) {
+            addDiscountInfo(discounts, "증정 이벤트", -CHAMPAGNE_PRICE);
+        }
+
+        return discounts;
+    }
+
+    private void printDiscountMessages(final List<String> discounts) {
+        discounts.forEach(OutputView::printMessage);
+    }
+
     private void addDiscountInfo(final List<String> discounts, final String discountName, final int discountAmount) {
         if (discountAmount != 0) {
             discounts.add(discountName + ": " + Utils.makeFormattedNumberWithComma(discountAmount) + UNIT);
         }
     }
+
     private int calculateChristmasDiscount(final Date date) {
         int christmasDiscount = 0;
         int dayOfMonth = date.getDate();

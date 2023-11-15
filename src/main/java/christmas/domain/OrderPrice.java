@@ -1,8 +1,5 @@
 package christmas.domain;
 
-import static christmas.constant.Menu.ALL_MENU_NAME;
-
-import christmas.constant.Menu;
 import christmas.util.Utils;
 import christmas.view.OutputView;
 

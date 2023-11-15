@@ -38,5 +38,4 @@ public class EventBadge {
         }
         return NOTHING;
     }
-
 }

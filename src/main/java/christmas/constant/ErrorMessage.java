@@ -1,7 +1,5 @@
 package christmas.constant;
 
-import christmas.constant.Constants;
-
 public enum ErrorMessage {
     PREFIX_STRING("[ERROR] "),
     DATE_OUT_OF_RANGE("유효하지 않은 날짜입니다. 다시 입력해 주세요."),
